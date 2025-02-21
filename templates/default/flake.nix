@@ -1,5 +1,5 @@
 {
-  description = ">>> TODO: fill this in <<<";
+  description = "A nix flake template";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -16,13 +16,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
       imports = [
-        ./templates/default/nix/formatting.nix
+        ./nix/formatting.nix
       ];
-      flake.templates.default = {
-        path = ./templates/default;
-        description = ''
-          flake-parts + nix-systems/default + treefmt-nix
-        '';
-      };
     };
 }
