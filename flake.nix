@@ -24,5 +24,11 @@
           flake-parts + nix-systems/default + treefmt-nix
         '';
       };
+      flake.templates.python = {
+        path = ./templates/python;
+        description = ''
+          the default template + uv2nix
+        '';
+      };
     };
 }
