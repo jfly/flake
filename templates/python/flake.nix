@@ -2,17 +2,19 @@
   description = "A nix flake template";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    devshell.url = "github:numtide/devshell";
+
+    git-hooks-nix.url = "github:cachix/git-hooks.nix";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    systems.url = "github:nix-systems/default";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    devshell.url = "github:numtide/devshell";
-
-    treefmt-nix = {
+    pyproject-build-systems = {
+      url = "github:pyproject-nix/build-system-pkgs";
+      inputs.pyproject-nix.follows = "pyproject-nix";
+      inputs.uv2nix.follows = "uv2nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:numtide/treefmt-nix";
     };
 
     pyproject-nix = {
@@ -20,16 +22,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    uv2nix = {
-      url = "github:pyproject-nix/uv2nix";
-      inputs.pyproject-nix.follows = "pyproject-nix";
+    systems.url = "github:nix-systems/default";
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pyproject-build-systems = {
-      url = "github:pyproject-nix/build-system-pkgs";
+    uv2nix = {
+      url = "github:pyproject-nix/uv2nix";
       inputs.pyproject-nix.follows = "pyproject-nix";
-      inputs.uv2nix.follows = "uv2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

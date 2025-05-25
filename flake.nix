@@ -1,13 +1,18 @@
 {
-  description = ">>> TODO: fill this in <<<";
+  description = "A home for my flake templates";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    git-hooks-nix.url = "github:cachix/git-hooks.nix";
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     systems.url = "github:nix-systems/default";
+
     treefmt-nix = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -21,7 +26,7 @@
       flake.templates.default = {
         path = ./templates/default;
         description = ''
-          flake-parts + nix-systems/default + treefmt-nix
+          flake-parts + nix-systems/default + treefmt-nix + git-hooks-nix
         '';
       };
       flake.templates.python = {

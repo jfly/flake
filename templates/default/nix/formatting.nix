@@ -1,8 +1,11 @@
 { inputs, ... }:
 {
-  # TODO: consolidate treefmt configuration with pre-commit-hooks? See
-  # https://github.com/cachix/git-hooks.nix/issues/287
-  imports = [ inputs.treefmt-nix.flakeModule ];
+  imports = [
+    inputs.treefmt-nix.flakeModule
+    inputs.git-hooks-nix.flakeModule
+  ];
+
+  perSystem.pre-commit.settings.hooks.treefmt.enable = true;
 
   perSystem.treefmt = {
     projectRootFile = "flake.nix";
