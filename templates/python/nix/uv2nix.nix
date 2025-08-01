@@ -1,6 +1,7 @@
 # A `uv2nix` flake-parts module.
-# This is very simple: it currently only supports simple, single package
-# workspaces.
+# I'm currently just copying this around from project to project to try to hide
+# all the boilerplate that comes with the `uv2nix`/`pyproject-nix` ecosystem.
+# I'm ambivalent about if this is worth extracting.
 
 {
   lib,
@@ -32,6 +33,15 @@ in
             python = lib.mkOption {
               type = lib.types.package;
               description = "Python package to use";
+            };
+
+            notEditablePackages = lib.mkOption {
+              type = lib.types.listOf lib.types.str;
+              description = ''
+                Names of local packages to *not* build editable.
+                This is useful to build everything editable, except for packages
+                which cannot be built editable.
+              '';
             };
 
             pyprojectOverrides = lib.mkOption {
@@ -76,6 +86,7 @@ in
         };
 
         pyprojectToml = lib.importTOML (cfg.workspaceRoot + "/pyproject.toml");
+        uvLock = inputs.uv2nix.lib.lock1.parseLock (lib.importTOML (cfg.workspaceRoot + "/uv.lock"));
 
         overlay = workspace.mkPyprojectOverlay {
           sourcePreference = "wheel";
@@ -92,9 +103,15 @@ in
               ]
             );
 
+        localPackages = lib.filter inputs.uv2nix.lib.lock1.isLocalPackage uvLock.package;
+        editablePackages = lib.filter (
+          localPackage: !(lib.lists.elem localPackage.name cfg.notEditablePackages)
+        ) localPackages;
+
         # Create an overlay enabling editable mode for all local dependencies.
         editableOverlay = workspace.mkEditablePyprojectOverlay {
           root = "$PRJ_ROOT";
+          members = map (package: package.name) editablePackages;
         };
 
         # Override previous set with our overrideable overlay.
