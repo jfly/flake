@@ -7,10 +7,7 @@
 
   perSystem.pre-commit.settings.hooks.treefmt.enable = true;
 
-  perSystem.treefmt = {
-    projectRootFile = "flake.nix";
-    programs = {
-      nixfmt.enable = true;
-    };
+  perSystem.treefmt.programs = {
+    nixfmt.enable = true;
   };
 }
