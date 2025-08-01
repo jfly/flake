@@ -1,5 +1,5 @@
 [project]
-name = "py-template"
+name = "py-template" #<<<
 version = "0.1.0"
 description = ">>> TODO <<<"
 readme = "README.md"
