@@ -37,6 +37,7 @@ in
 
             notEditablePackages = lib.mkOption {
               type = lib.types.listOf lib.types.str;
+              default = [];
               description = ''
                 Names of local packages to *not* build editable.
                 This is useful to build everything editable, except for packages
@@ -46,20 +47,20 @@ in
 
             pyprojectOverrides = lib.mkOption {
               type = lib.types.raw; # TODO: is there a better type for this?
+              default = _final: _prev: { };
               description = ''
                 Overlays with build fixups.
 
                 See https://pyproject-nix.github.io/uv2nix/usage/hello-world.html?highlight=pyprojectOverrides#flakenix
               '';
-              default = _final: _prev: { };
             };
 
             nativeCheckInputs = lib.mkOption {
               type = lib.types.listOf lib.types.package;
+              default = [ ];
               description = ''
                 Additional packages for running tests.
               '';
-              default = [ ];
             };
           };
         };
