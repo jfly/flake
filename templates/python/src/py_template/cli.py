@@ -9,4 +9,4 @@ def main(name: str):
 
 
 if __name__ == "__main__":
-    app()
+    app()  # pragma: no cover
