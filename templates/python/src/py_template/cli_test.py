@@ -1,10 +1,10 @@
-from click.testing import CliRunner
+from typer.testing import CliRunner
 
-from .cli import main
+from .cli import app
 
 
 def test_main():
     runner = CliRunner()
-    result = runner.invoke(main, [])
+    result = runner.invoke(app, ["template"])
     assert result.exit_code == 0
-    assert result.output == "hello, world\n"
+    assert result.output == "hello, template\n"

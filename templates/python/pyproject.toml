@@ -5,7 +5,7 @@ description = ">>> TODO <<<"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "click>=8.1.8",
+    "typer>=0.24.1",
 ]
 
 [dependency-groups]
@@ -15,7 +15,7 @@ dev = [
 ]
 
 [project.scripts]
-py-template = "py_template.cli:main" #<<<
+py-template = "py_template.cli:app" #<<<
 
 [tool.ruff.lint]
 extend-select = ["I"]

@@ -37,7 +37,7 @@ in
 
             notEditablePackages = lib.mkOption {
               type = lib.types.listOf lib.types.str;
-              default = [];
+              default = [ ];
               description = ''
                 Names of local packages to *not* build editable.
                 This is useful to build everything editable, except for packages
