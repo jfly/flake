@@ -145,7 +145,7 @@ in
               UV_NO_SYNC = "1";
 
               # Force uv to use Python interpreter from venv.
-              UV_PYTHON = "${editableVenv}/bin/python";
+              UV_PYTHON = python.interpreter;
 
               # Prevent uv from downloading managed Pythons.
               UV_PYTHON_DOWNLOADS = "never";
