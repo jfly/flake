@@ -9,6 +9,7 @@
 
   perSystem.treefmt.programs = {
     nixfmt.enable = true;
+    nixf-diagnose.enable = true;
     ruff-check.enable = true;
     ruff-format.enable = true;
   };

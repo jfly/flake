@@ -11,7 +11,7 @@
       uv2nix = {
         python = pkgs.python313;
 
-        workspaceRoot = builtins.toString (
+        workspaceRoot = toString (
           lib.fileset.toSource {
             root = ./..;
             fileset = lib.fileset.unions [

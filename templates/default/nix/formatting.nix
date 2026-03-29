@@ -9,5 +9,6 @@
 
   perSystem.treefmt.programs = {
     nixfmt.enable = true;
+    nixf-diagnose.enable = true;
   };
 }
